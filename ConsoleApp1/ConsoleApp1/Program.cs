@@ -139,7 +139,9 @@ namespace ConsoleApp1
 
         public override void UseAbility()
         {
-            if (Health < 200)
+            int maxHealth = 200;
+
+            if (Health < maxHealth)
             {
                 int randomChance = GetRandom();
 
@@ -148,9 +150,7 @@ namespace ConsoleApp1
                     Console.WriteLine("Клирик исцелил себя");
                     Health += 50;
                 }
-
             }
-
         }
     }
 
