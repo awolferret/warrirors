@@ -15,7 +15,7 @@ namespace ConsoleApp1
     class Warrior
     {
         protected string Name;
-        protected int Health;
+        public int Health;
         protected int Damage;
         protected int Armor;
 
@@ -50,15 +50,15 @@ namespace ConsoleApp1
             int.TryParse(input, out index);
             Warrior secondFihter = SecondWarriors[index - 1];
 
-            while (firstFihter.GetHealth() > 0 && secondFihter.GetHealth() > 0)
+            while (firstFihter.GetHealth > 0 && secondFihter.GetHealth > 0)
             {
                 Console.WriteLine(" ");
                 firstFihter.GetRandom();
                 firstFihter.UseAbility();
-                firstFihter.TakeDamage(secondFihter.GetDamage());
+                firstFihter.TakeDamage(secondFihter.GetDamage);
                 secondFihter.UseAbility();
                 firstFihter.GetRandom();
-                secondFihter.TakeDamage(firstFihter.GetDamage());
+                secondFihter.TakeDamage(firstFihter.GetDamage);
                 firstFihter.ShowInfo();
                 secondFihter.ShowInfo();
             }
@@ -73,14 +73,20 @@ namespace ConsoleApp1
             list.Add(new Huntsman("Huntsman", 120, 50, 10));
         }
 
-        public int GetHealth() 
+        public int GetHealth 
         {
-            return Health;
+            get
+            {
+                return Health;
+            }
         }
 
-        public int GetDamage()
+        public int GetDamage
         {
-            return Damage;
+            get
+            {
+                return Damage;
+            }
         }
 
         public virtual void TakeDamage(int damage)
@@ -118,12 +124,14 @@ namespace ConsoleApp1
         public void DealDoubleDamage()
         {
             int count = 0;
+            int strike = 3;
+            int multiplayer = 2;
             count++;
 
-            if (count == 3)
+            if (count == strike)
             {
                 Console.WriteLine("Разбойник нанес двойной урон");
-                Damage *= 2;
+                Damage *= multiplayer;
                 count = 0;
             }
         }
@@ -139,12 +147,13 @@ namespace ConsoleApp1
         public override void UseAbility()
         {
             int maxHealth = 200;
+            int firstThird = 3;
 
             if (Health < maxHealth)
             {
                 int randomChance = GetRandom();
 
-                if (randomChance < 2)
+                if (randomChance < firstThird)
                 {
                     Console.WriteLine("Клирик исцелил себя");
                     Health += 50;
@@ -163,13 +172,14 @@ namespace ConsoleApp1
         public override void UseAbility() 
         {
             int randomChance = GetRandom();
+            int half = 5;
 
-            if (randomChance < 5)
+            if (randomChance < half)
             {
                 Console.WriteLine("Паладин получил баф ХП");
                 Health += 25;
             }
-            else if (randomChance == 5)
+            else if (randomChance == half)
             {
                 Console.WriteLine("Паладин получил баф урона и ХП");
                 Health += 50;
@@ -193,8 +203,9 @@ namespace ConsoleApp1
         public override void TakeDamage(int damage)
         {
             int randomChance = GetRandom();
+            int firstThird = 3;
 
-            if (randomChance < 3)
+            if (randomChance < firstThird)
             {
                 Console.WriteLine("Ниндзя увернулся от урона");
             }
@@ -215,11 +226,12 @@ namespace ConsoleApp1
         public override void UseAbility()
         {
             int randomChance = GetRandom();
+            int firstThird = 3;
+            int dogDamage = 10;
 
-            if (randomChance < 3)
+            if (randomChance < firstThird)
             {
                 Console.WriteLine("Охотник призвал на помощь собаку");
-                int dogDamage = 10;
                 Damage += dogDamage;
             }
         }
