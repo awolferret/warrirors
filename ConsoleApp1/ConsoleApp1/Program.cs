@@ -34,7 +34,6 @@ namespace ConsoleApp1
             List<Warrior> SecondWarriors = new List<Warrior>();
             AddToList(SecondWarriors);
 
-
             for (int i = 0; i < FirstWarriors.Count; i++)
             {
                 Console.Write(i + 1 + " ");
