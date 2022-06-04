@@ -15,10 +15,11 @@ namespace ConsoleApp1
     class Warrior
     {
         protected string Name;
-        public int Health;
+        protected int Health;
         protected int Damage;
         protected int Armor;
-
+        public int GetHealth { get; private set; }
+        public int GetDamage { get; private set; }
         public Warrior(string name, int health, int damage, int armor)
         {
             Name = name;
@@ -71,22 +72,6 @@ namespace ConsoleApp1
             list.Add(new Paladin("Paladin", 150, 45, 25));
             list.Add(new Ninja("Ninja", 80, 55, 5));
             list.Add(new Huntsman("Huntsman", 120, 50, 10));
-        }
-
-        public int GetHealth 
-        {
-            get
-            {
-                return Health;
-            }
-        }
-
-        public int GetDamage
-        {
-            get
-            {
-                return Damage;
-            }
         }
 
         public virtual void TakeDamage(int damage)
