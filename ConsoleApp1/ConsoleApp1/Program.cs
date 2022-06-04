@@ -7,7 +7,7 @@ namespace ConsoleApp1
     {
         static void Main()
         {
-            Warrior warrior = new Warrior("Defaul", 1,1,1);
+            Warrior warrior = new Warrior("Default", 1,1,1);
             warrior.Finghting();
         }
     }
