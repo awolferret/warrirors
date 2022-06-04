@@ -20,6 +20,7 @@ namespace ConsoleApp1
         protected int Armor;
         public int GetHealth { get; private set; }
         public int GetDamage { get; private set; }
+
         public Warrior(string name, int health, int damage, int armor)
         {
             Name = name;
