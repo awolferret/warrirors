@@ -7,41 +7,8 @@ namespace ConsoleApp1
     {
         static void Main()
         {
-            List<Warrior> warriors = new List<Warrior>();
-            warriors.Add(new Rogue("Rogue", 100, 50, 10));
-            warriors.Add(new Cliric("Cliric", 200, 40, 25));
-            warriors.Add(new Paladin("Paladin", 150, 45, 25));
-            warriors.Add(new Ninja("Minja", 80, 55, 5));
-            warriors.Add(new Huntsman("Huntsman", 120, 50, 10));
-
-            for (int i = 0; i < warriors.Count; i++)
-            {
-                Console.Write(i + 1 + " ");
-                warriors[i].ShowInfo();
-            }
-
-            Console.WriteLine("Выберите первого бойца");
-            string input = Console.ReadLine();
-            int index;
-            int.TryParse(input, out index);
-            Warrior firstFihter = warriors[index - 1];
-            Console.WriteLine("Выберите второго бойца");
-            input = Console.ReadLine();
-            int.TryParse(input, out index);
-            Warrior secondFihter = warriors[index - 1];
-
-            while (firstFihter.GetHealth() > 0 && secondFihter.GetHealth() > 0)
-            {
-                Console.WriteLine(" ");
-                firstFihter.GetRandom();
-                firstFihter.UseAbility();
-                firstFihter.TakeDamage(secondFihter.GetDamage());
-                secondFihter.UseAbility();
-                firstFihter.GetRandom();
-                secondFihter.TakeDamage(firstFihter.GetDamage());
-                firstFihter.ShowInfo();
-                secondFihter.ShowInfo();
-            }
+            Warrior warrior = new Warrior("Defaul", 1,1,1);
+            warrior.Finghting();
         }
     }
 
@@ -58,6 +25,53 @@ namespace ConsoleApp1
             Health = health;
             Damage = damage;
             Armor = armor;
+        }
+
+        public void Finghting()
+        {
+            List<Warrior> FirstWarriors = new List<Warrior>();
+            AddToList(FirstWarriors);
+            List<Warrior> SecondWarriors = new List<Warrior>();
+            AddToList(SecondWarriors);
+
+
+            for (int i = 0; i < FirstWarriors.Count; i++)
+            {
+                Console.Write(i + 1 + " ");
+                FirstWarriors[i].ShowInfo();
+            }
+
+            Console.WriteLine("Выберите первого бойца");
+            string input = Console.ReadLine();
+            int index;
+            int.TryParse(input, out index);
+            Warrior firstFihter = FirstWarriors[index - 1];
+            Console.WriteLine("Выберите второго бойца");
+            input = Console.ReadLine();
+            int.TryParse(input, out index);
+            Warrior secondFihter = SecondWarriors[index - 1];
+
+            while (firstFihter.GetHealth() > 0 && secondFihter.GetHealth() > 0)
+            {
+                Console.WriteLine(" ");
+                firstFihter.GetRandom();
+                firstFihter.UseAbility();
+                firstFihter.TakeDamage(secondFihter.GetDamage());
+                secondFihter.UseAbility();
+                firstFihter.GetRandom();
+                secondFihter.TakeDamage(firstFihter.GetDamage());
+                firstFihter.ShowInfo();
+                secondFihter.ShowInfo();
+            }
+        }
+
+        private void AddToList(List<Warrior> list)
+        {
+            list.Add(new Rogue("Rogue", 100, 50, 10));
+            list.Add(new Cliric("Cliric", 200, 40, 25));
+            list.Add(new Paladin("Paladin", 150, 45, 25));
+            list.Add(new Ninja("Ninja", 80, 55, 5));
+            list.Add(new Huntsman("Huntsman", 120, 50, 10));
         }
 
         public int GetHealth() 
@@ -125,8 +139,18 @@ namespace ConsoleApp1
 
         public override void UseAbility()
         {
-            Console.WriteLine("Клирик исцелил себя");
-            Health += 50;
+            if (Health < 200)
+            {
+                int randomChance = GetRandom();
+
+                if (randomChance < 2)
+                {
+                    Console.WriteLine("Клирик исцелил себя");
+                    Health += 50;
+                }
+
+            }
+
         }
     }
 
@@ -144,7 +168,7 @@ namespace ConsoleApp1
             if (randomChance < 5)
             {
                 Console.WriteLine("Паладин получил баф ХП");
-                Health += 50;
+                Health += 25;
             }
             else if (randomChance == 5)
             {
